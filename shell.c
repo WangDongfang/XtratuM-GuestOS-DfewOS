@@ -53,7 +53,7 @@ extern int  gui_init();
 extern void cal_cmd_init();
 extern void ios_init();
 extern void media_init();
-void wtd_cmd_init();
+extern void wtd_cmd_init();
 
 /*======================================================================
   forward function declare
@@ -137,7 +137,7 @@ void T_shell ()
     tetris_cmd_init();      /* tetris */
     lian_cmd_init();        /* lianliankan */
     date_cmd_init();        /* show and set date */
-    cal_cmd_init();			/* calculator expression */
+    cal_cmd_init();         /* calculator expression */
 #if 0
     gui_init();
     ios_init();
@@ -180,7 +180,7 @@ void T_shell ()
  *
  * - find the first no space char position
  */
-static char *_del_front_space(char *cmd_line)
+static char *_del_front_space (char *cmd_line)
 {
     while (isspace(*cmd_line)) {
         cmd_line++;
@@ -243,9 +243,9 @@ int _get_cmd_line (char *s)
 
         /* check Tab key */
         if ((c != '\t') && have_tab) {
-        	int s_len = strlen (s);
-        	int prefix_len;
-        	prefix_len = _get_last_cmd_len (s);
+            int s_len = strlen (s);
+            int prefix_len;
+            prefix_len = _get_last_cmd_len (s);
             strcpy (&s[s_len - prefix_len], tab_matched_cmd);
             i = strlen (s);
             have_tab = 0;
@@ -257,10 +257,10 @@ int _get_cmd_line (char *s)
                 serial_putc('\n');
                 goto got_it;
             case '\b':                      /* Backspace */
-            	if (i >= 1) {
+                if (i >= 1) {
                     serial_puts("\b \b");
                     i--;
-            	}
+                }
                 break;
             case '\t':                      /* Tab */
                 have_tab = 1;
@@ -534,13 +534,13 @@ int C_reboot (int argc, char **argv)
 {
 #if 0
     __asm__ (
-        "ldr	r1, =0x7e00f000\n"
-        "ldr	r2, [r1, #0x118]\n"
-        "ldr	r3, =0xffff\n"
-        "and	r2, r3, r2, lsr #12\n"
-        "str	r2, [r1, #0x114]\n"
+        "ldr    r1, =0x7e00f000\n"
+        "ldr    r2, [r1, #0x118]\n"
+        "ldr    r3, =0xffff\n"
+        "and    r2, r3, r2, lsr #12\n"
+        "str    r2, [r1, #0x114]\n"
         "_loop_forever:\n"
-        "b	_loop_forever\n");
+        "b    _loop_forever\n");
 #else
     CPU_REBOOT();
 #endif

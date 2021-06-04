@@ -90,6 +90,23 @@ int toupper(int c);
 int toascii(int c);
 int abs(int i);
 
+
+/*=======================================================
+ * stdlib.h
+**=====================================================*/
+void srand (unsigned int seed);
+int  rand ();
+
+
+/*=======================================================
+ * stdarg.h
+**=====================================================*/
+typedef __builtin_va_list  va_list;
+#define va_start(v, l)   __builtin_va_start(v,l)
+#define va_end(v)        __builtin_va_end(v)
+#define va_arg(v, l)     __builtin_va_arg(v,l)
+
+
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

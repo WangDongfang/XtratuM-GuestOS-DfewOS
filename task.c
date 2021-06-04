@@ -210,7 +210,7 @@ static uint32 _alloc_stack (uint32 stack_size)
             current_page++;
         }
         if (matched_stack_pages == need_stack_pages) {
-        	break;
+            break;
         }
     } /* while () */
 
@@ -267,7 +267,7 @@ static void _release_stack (OS_TCB *pTcb)
 static int _stack_used_percent (OS_TCB *pTcb)
 {
 #if 1
-	/* Binary Search */
+    /* Binary Search */
     uint32 *low = (uint32 *)(pTcb->stack_start - pTcb->stack_size);
     uint32 *high = (uint32 *)(pTcb->stack_start - 4);
     uint32 *mid = low + (high - low) / 2;
@@ -324,7 +324,7 @@ OS_TCB *task_create(const char *task_name,
     pTcb->arg1          = arg1;
     pTcb->arg2          = arg2;
     pTcb->status        = TASK_STATUS_READY;
-    pTcb->pend_obj	    = NULL;
+    pTcb->pend_obj      = NULL;
 
 
     /* alloc stack */
@@ -366,9 +366,9 @@ OS_TCB *task_create(const char *task_name,
  */
 OS_STATUS task_delete (OS_TCB *pTcb)
 {
-	int cpsr_c;
+    int cpsr_c;
 
-	cpsr_c = CPU_LOCK();
+    cpsr_c = CPU_LOCK();
 
     /* remove the tcb from xx list */
     switch (pTcb->status) {
@@ -400,7 +400,7 @@ OS_STATUS task_delete (OS_TCB *pTcb)
 
     /* free this task alloced heap memory */
     /*memH_free (pTcb);*/ /* T_shell alloc many memory for [yaffs] [net]...
-      	  	  	  	  	  	 we can't free them when we exit shell */
+      we can't free them when we exit shell */
 
     /* free task stack */
     _release_stack (pTcb);
@@ -510,9 +510,9 @@ void task_show ()
 {
 #define TASK_SHOW_HEAD  "\n  NAME      ENTRY      PRI    STATUS       SP         DELAY       P_OBJ       TCB        STACK"\
                         "\n--------  ----------  -----  --------  ----------  ----------  ----------  ----------  ----------\n"
-	int cpsr_c;
+    int cpsr_c;
 
-	cpsr_c = CPU_LOCK();
+    cpsr_c = CPU_LOCK();
 
     serial_puts(TASK_SHOW_HEAD);
 

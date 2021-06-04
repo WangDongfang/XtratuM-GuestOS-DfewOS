@@ -39,7 +39,6 @@ extern "C" {
 ======================================================================*/
 #define PATH_LEN_MAX            256  /* path length                   */
 
-
 #ifdef __cplusplus
 }
 #endif /* __cplusplus */

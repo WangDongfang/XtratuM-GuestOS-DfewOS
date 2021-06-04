@@ -45,7 +45,7 @@ void T_EntryTask1()
         delayQ_delay(100);
 
         if(i >= 10) {
-        	semB_give(_G_p_semB);
+            semB_give(_G_p_semB);
         }
 #endif
     }
@@ -84,7 +84,7 @@ void T_EntryTask3 (uint32 arg1, uint32 arg2)
     serial_printf("Task3 --------- arg1 = %d arg2 = %d\n", arg1, arg2);
     serial_puts("/**********************************/\n");
     for (; i < 3; i++) {
-    	delay(20);
+        delay(20);
         serial_printf("Task3 --------- %d\n", i);
     }
 }
@@ -315,13 +315,13 @@ int DfewOSMain()
     LOAD_HIGHEST_TASK(); /* load highest task and tick start */
 
     /* never reach here */
-	return 0;
+    return 0;
 }
 
 void delay(volatile int n)
 {
-	volatile int i = 1000000;
-	while (i-- > 0) {
+    volatile int i = 1000000;
+    while (i-- > 0) {
         while (n-- > 0) {
             ;
         }
